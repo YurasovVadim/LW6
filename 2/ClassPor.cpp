@@ -22,15 +22,26 @@ std::ostream& operator<< (std::ostream &out, const Rectangle &point)
  
  
  template <typename T>
-T sort(T* a, T* b,T* S, int k)
+T sort(T* a, T* b, int k)
 {
-  int tmp = 0;
+  T S[k];
+  int tmp1 = 0;
+  int tmp2 = 0;
+  int tmp3 = 0;
+  for (int i = 0;i<k;i++)
+  {S[i]=a[i]*b[i];}
   for(int i = 0;i<k;i++){
     for(int j = (k-1);j>=(i+1);j--){
       if(S[j]<S[j-1]){
-        tmp = S[j];
+        tmp1 = S[j];
         S[j]=S[j-1];
-        S[j-1]=tmp;
+        S[j-1]=tmp1;
+        tmp2 = a[j];
+        a[j]=a[j-1];
+        a[j-1]=tmp2;
+        tmp3 = b[j];
+        b[j]=b[j-1];
+        b[j-1]=tmp3;
       }
     }
   }
@@ -56,8 +67,7 @@ int main(int argc, char **argv)
         std::cout<<"Введи "<<i+1<<" число: "<<std::endl;
        std::cin>>a[i];
        std::cin>>b[i];
-       S[i]=a[i]*b[i];
 }
-sort(a,b,S,k);
+sort(a,b,k);
     return 0;
 }
